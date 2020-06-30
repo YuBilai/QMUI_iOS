@@ -472,6 +472,18 @@ static QMUIModalPresentationViewController *appearance;
                 completion(finished);
             }
         }];
+    }else if(self.animationStyle == QMUIModalPresentationAnimationStyleSlideUpToBottom){
+        self.dimmingView.alpha = 0.0;
+        CGFloat old_y = CGRectGetMinY(self.contentView.frame);
+        self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, 0, self.contentView.qmui_width, self.contentView.qmui_height);
+        [UIView animateWithDuration:.5 delay:0.0 options:QMUIViewAnimationOptionsCurveOut animations:^{
+            self.dimmingView.alpha = 1.0;
+            self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, old_y, self.contentView.qmui_width, self.contentView.qmui_height);
+        } completion:^(BOOL finished) {
+            if (completion) {
+                completion(finished);
+            }
+        }];
     }
 }
 

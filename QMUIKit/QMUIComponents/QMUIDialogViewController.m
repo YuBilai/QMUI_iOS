@@ -779,12 +779,6 @@ static QMUIDialogTextFieldViewController *dialogTextFieldViewControllerAppearanc
         QMUITextField *textField = self.mutableTextFields[i];
         CALayer *separatorLayer = self.mutableSeparatorLayers[i];
         
-        if (!label.hidden) {
-            [label sizeToFit];
-            label.frame = CGRectFlatMake(self.textFieldLabelMargins.left, minY + self.textFieldLabelMargins.top, CGRectGetWidth(self.contentView.bounds) - UIEdgeInsetsGetHorizontalValue(self.textFieldLabelMargins), CGRectGetHeight(label.frame));
-            minY = CGRectGetMaxY(label.frame) + self.textFieldLabelMargins.bottom;
-        }
-        
         textField.frame = CGRectFlatMake(self.textFieldMargins.left, minY + self.textFieldMargins.top, CGRectGetWidth(self.contentView.bounds) - UIEdgeInsetsGetHorizontalValue(self.textFieldMargins), self.textFieldHeight);
         minY = CGRectGetMaxY(textField.frame) + self.textFieldMargins.bottom;
         
@@ -794,6 +788,12 @@ static QMUIDialogTextFieldViewController *dialogTextFieldViewControllerAppearanc
             CGFloat separatorWidth = CGRectGetWidth(textField.frame) - UIEdgeInsetsGetHorizontalValue(textField.textInsets) - UIEdgeInsetsGetHorizontalValue(self.textFieldSeparatorInsets);
             separatorLayer.frame = CGRectMake(separatorMinX, minY + self.textFieldSeparatorInsets.top, separatorWidth, PixelOne);
             minY = CGRectGetMinY(separatorLayer.frame) + self.textFieldSeparatorInsets.bottom;// 用 minY 是因为分隔线高度不占位
+        }
+        
+        if (!label.hidden) {
+            [label sizeToFit];
+            label.frame = CGRectFlatMake(self.textFieldLabelMargins.left, minY, CGRectGetWidth(self.contentView.bounds) - UIEdgeInsetsGetHorizontalValue(self.textFieldLabelMargins), CGRectGetHeight(label.frame));
+            minY = CGRectGetMaxY(label.frame) + self.textFieldLabelMargins.bottom;
         }
     }
     

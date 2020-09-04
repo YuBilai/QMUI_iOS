@@ -435,9 +435,6 @@ static char kAssociatedObjectKey_viewController;
                                                [UIDatePicker class],
                                                [UIPickerView class],
                                                [UIVisualEffectView class],
-                                               // Apple 不再接受使用了 UIWebView 的 App 提交，所以这里去掉 UIWebView
-                                               // https://github.com/Tencent/QMUI_iOS/issues/741
-//                                               [UIWebView class],
                                                [UIWindow class],
                                                [UINavigationBar class],
                                                [UIToolbar class],
